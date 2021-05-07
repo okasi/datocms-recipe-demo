@@ -3,3 +3,12 @@
 @tailwind components;
 /* purgecss end ignore */
 @tailwind utilities;
+
+
+h1 {
+  font-weight: bold;
+}
+
+* {
+  color: #404040
+}

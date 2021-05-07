@@ -1,14 +1,9 @@
-import Alert from '../components/alert'
-import Footer from '../components/footer'
-
-export default function Layout({ preview, children }) {
+export default function Layout({ children, props }) {
   return (
     <>
-      <div className="min-h-screen">
-        <Alert preview={preview} />
+      <div className="min-h-screen max-w-screen overflow-x-hidden -mt-24" {...props}>
         <main>{children}</main>
       </div>
-      <Footer />
     </>
   )
 }
