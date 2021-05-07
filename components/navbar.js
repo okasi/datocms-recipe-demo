@@ -5,7 +5,7 @@ export default function Navbar() {
   return (
     <>
     <nav className="p-4">
-      <Logo className="w-44 h-full ml-4"></Logo>
+      <Logo className="w-44 h-full ml-4" onClick={() => window.location = "/"}></Logo>
     </nav>
     <style jsx>{`
       nav {

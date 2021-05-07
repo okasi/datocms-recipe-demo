@@ -26,11 +26,13 @@ export default function RecipePage({ recipe }) {
             }}
           >
             {/* Background image */}
-            <Image
-              data={recipe.featureImage.responsiveImage}
-              className="h-full w-full absolute inset-0"
-              pictureStyle={{ objectFit: 'cover' }}
-            />
+            {recipe?.featureImage?.responsiveImage && (
+              <Image
+                data={recipe?.featureImage?.responsiveImage}
+                className="h-full w-full absolute inset-0"
+                pictureStyle={{ objectFit: 'cover' }}
+              />
+            )}
 
             {/* Info Box */}
             <div className="max-w-7xl mx-auto">
@@ -42,19 +44,21 @@ export default function RecipePage({ recipe }) {
                 }}
               >
                 <p className="text-sm font-light">
-                  ⏳ Time - {recipe.time} min
+                  ⏳ Time - {recipe?.time} min
                 </p>
                 <p className="text-sm font-light">
-                  🏋️‍♀️ Difficulty - {recipe.difficulty?.difficulty}
+                  🏋️‍♀️ Difficulty - {recipe?.difficulty?.difficulty}
                 </p>
-                <h1 className="text-3xl font-extrabold mt-2">{recipe.title}</h1>
+                <h1 className="text-3xl font-extrabold mt-2">
+                  {recipe?.title}
+                </h1>
                 <p className="font-bold text-md mt-2">
                   ⭐️⭐️⭐️⭐️⭐️ 5{' '}
                   <span className="font-light">
                     {'\u00A0'}|{'\u00A0'} 1200 ratings
                   </span>{' '}
                 </p>
-                <p className="mt-2 text-md">{recipe.description}</p>
+                <p className="mt-2 text-md">{recipe?.description}</p>
                 <button className="rounded-full px-4 py-2 mt-2 border-gray-400 hover:opacity-75 font-bold border-2">
                   ✍️ Rate recipe
                 </button>
@@ -67,27 +71,27 @@ export default function RecipePage({ recipe }) {
               <div className="flex flex-col w-full max-w-md">
                 <div className="bg-green-100 p-8 w-full rounded-br-3xl">
                   <h3 className="text-4xl font-semibold mb-2">Ingredients</h3>
-                  {recipe.recipes ? (
+                  {recipe?.recipes ? (
                     <h4 className="font-semibold text-lg mt-2">
-                      {recipe.title}
+                      {recipe?.title}
                     </h4>
                   ) : null}
                   <ul>
-                    {recipe.ingredients.map((ingredient) => (
-                      <li className="text-lg" key={ingredient.name.name}>
-                        {ingredient.amount} {ingredient.unit.name}{' '}
-                        {ingredient.name.name}
+                    {recipe?.ingredients.map((ingredient) => (
+                      <li className="text-lg" key={ingredient.name?.name}>
+                        {ingredient.amount} {ingredient.unit?.name}{' '}
+                        {ingredient.name?.name}
                       </li>
                     ))}
                   </ul>
-                  {recipe.recipes?.map((item) => {
+                  {recipe?.recipes?.map((item) => {
                     return (
                       <>
                         <h4 className="font-semibold text-lg mt-2">
-                          {item.recipe.title}
+                          {item.recipe?.title}
                         </h4>
                         <ul>
-                          {item.recipe.ingredients.map((ingredient) => (
+                          {item.recipe?.ingredients.map((ingredient) => (
                             <li className="text-lg" key={ingredient.name?.name}>
                               {ingredient?.amount} {ingredient.unit?.name}{' '}
                               {ingredient.name?.name}
@@ -101,29 +105,35 @@ export default function RecipePage({ recipe }) {
 
                 <div>
                   <div className="flex flex-row items-center text-xl font-medium mt-2">
-                    <p className="mr-2">Recipe by {recipe.author.name}</p>
+                    <p className="mr-2">Recipe by {recipe?.author?.name}</p>
 
-                    <Image
-                      data={recipe.author.image.responsiveImage}
-                      style={{
-                        height: '32px',
-                        width: '32px',
-                        borderRadius: '100%',
-                      }}
-                    />
+                    {recipe?.author?.image.responsiveImage && (
+                      <Image
+                        data={recipe?.author?.image.responsiveImage}
+                        style={{
+                          height: '32px',
+                          width: '32px',
+                          borderRadius: '100%',
+                        }}
+                      />
+                    )}
                   </div>
 
                   <div className="flex flex-row items-center text-xl font-medium mt-2">
-                    <p className="mr-2">Photo by {recipe.photographer.name}</p>
+                    <p className="mr-2">
+                      Photo by {recipe?.photographer?.name}
+                    </p>
 
-                    <Image
-                      data={recipe.photographer.image.responsiveImage}
-                      style={{
-                        height: '32px',
-                        width: '32px',
-                        borderRadius: '100%',
-                      }}
-                    />
+                    {recipe?.photographer?.image.responsiveImage && (
+                      <Image
+                        data={recipe?.photographer?.image.responsiveImage}
+                        style={{
+                          height: '32px',
+                          width: '32px',
+                          borderRadius: '100%',
+                        }}
+                      />
+                    )}
                   </div>
                 </div>
               </div>
@@ -131,13 +141,13 @@ export default function RecipePage({ recipe }) {
               <div className="flex flex-col ml-24 mt-8 w-full">
                 <h3 className="text-4xl font-semibold mb-6">Instructions</h3>
                 <ul>
-                  {recipe.recipes ? (
+                  {recipe?.recipes ? (
                     <h4 className="font-semibold text-2xl mb-8">
-                      {recipe.title}
+                      {recipe?.title}
                     </h4>
                   ) : null}
                   <ul>
-                    {recipe.steps.map((step, index) => (
+                    {recipe?.steps.map((step, index) => (
                       <li
                         className="text-lg font-medium border-b border-gray-200 w-full pb-6 mb-6"
                         key={index}
@@ -150,15 +160,18 @@ export default function RecipePage({ recipe }) {
                     ))}
                   </ul>
 
-                  {recipe.recipes?.map((item) => {
+                  {recipe?.recipes?.map((item) => {
                     return (
                       <>
                         <h4 className="font-semibold text-2xl mt-2 mb-8">
-                          {item.recipe.title}
+                          {item.recipe?.title}
                         </h4>
                         <ul>
-                          {item.recipe.steps.map((step, index) => (
-                            <li className="text-lg font-medium border-b border-gray-200 w-full pb-6 mb-6" key={index}>
+                          {item.recipe?.steps.map((step, index) => (
+                            <li
+                              className="text-lg font-medium border-b border-gray-200 w-full pb-6 mb-6"
+                              key={index}
+                            >
                               <div className="w-10 h-10 bg-green-500 rounded-full text-white font-bold mr-4 inline-flex flex-col justify-center items-center m-auto">
                                 {index + 1}
                               </div>
@@ -172,22 +185,22 @@ export default function RecipePage({ recipe }) {
                 </ul>
 
                 <h3 className="text-4xl font-semibold mb-6 mt-4">Video</h3>
-                {recipe.video && (
+                {recipe?.video && (
                   <iframe
                     width="512px"
                     height="288px"
-                    src={recipe.video}
+                    src={recipe?.video}
                   ></iframe>
                 )}
 
                 <SectionSeparator></SectionSeparator>
 
-                {recipe.extra && (
+                {recipe?.extra && (
                   <>
                     <h3 className="text-4xl font-semibold mb-6">Extra</h3>
                     <ReactMarkdown
-                    className="mb-12"
-                      children={recipe.extra}
+                      className="mb-12"
+                      children={recipe?.extra}
                       components={{
                         h1: ({ node, ...props }) => (
                           <h1 className="font-bold text-2xl mt-4" {...props} />
