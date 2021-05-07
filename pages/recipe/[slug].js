@@ -11,16 +11,7 @@ import recipeFragment from '../../lib/recipeFragment'
 import RecipePage from '../../components/recipePage'
 import responsiveImageFragment from '../../lib/responsiveImageFragment'
 
-export async function getStaticPaths() {
-  const data = await request({ query: `{ allRecipes { slug } }` })
-
-  return {
-    paths: data.allRecipes.map((recipe) => `/recipe/${recipe.slug}`),
-    fallback: false,
-  }
-}
-
-export async function getStaticProps({ params, preview = false }) {
+export async function getServerSideProps({ params, preview = false }) {
   const graphqlRequest = {
     query: `
 query RecipeBySlug($slug: String) {

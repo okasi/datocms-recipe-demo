@@ -30,8 +30,6 @@ export default function Index({ subscription }) {
     data: { allRecipes },
   } = useQuerySubscription(subscription)
 
-  console.log(allRecipes)
-
   return (
     <>
       <Layout>
